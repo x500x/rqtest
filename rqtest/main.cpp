@@ -3,7 +3,8 @@
 #include <string.h>
 #include "curl/curl.h"
 #include <iostream>
-
+#pragma comment(lib, ".\\libcurl\\libcurl.lib")
+#pragma comment(lib, ".\\libcurl\\zlib.lib")
 typedef struct {
     std::string body;
 	size_t bodySize;
