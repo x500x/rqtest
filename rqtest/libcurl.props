@@ -19,4 +19,5 @@
         <Library Include="zlib.lib" />
         <Library Include="libcurl.lib" />
     </ItemGroup>
+    
 </Project>
