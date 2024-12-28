@@ -1,0 +1,54 @@
+name: rqtest
+
+on:
+  push:
+    branches: [ "main" ]
+
+env:
+  # Path to the solution file relative to the root of the project.
+  SOLUTION_FILE_PATH: .
+
+  # Configuration type to build.
+  # You can convert this to a build matrix if you need coverage of multiple configuration types.
+  # https://docs.github.com/actions/learn-github-actions/managing-complex-workflows#using-a-build-matrix
+  #BUILD_CONFIGURATION: Release
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Add MSBuild to PATH
+      uses: microsoft/setup-msbuild@v2
+
+    - name: Restore NuGet packages
+      working-directory: ${{env.GITHUB_WORKSPACE}}
+      run: nuget restore ${{env.SOLUTION_FILE_PATH}}
+      
+    - name: build
+      run: |
+           New-Item -Path ".\" -Name "libcurl" -ItemType "directory"
+           Invoke-WebRequest -Uri "https://raw.github.com/x500x/building/refs/heads/x64-windows-static%408.11.0/zlib_x64-windows-static/lib/zlib.lib" -OutFile ".\libcurl\zlib.lib"
+           Invoke-WebRequest -Uri "https://raw.github.com/x500x/building/refs/heads/x64-windows-static%408.11.0/curl_x64-windows-static/lib/libcurl.lib" -OutFile ".\libcurl\libcurl.lib"
+           msbuild /m /p:Configuration=Release ${{env.SOLUTION_FILE_PATH}}  #x64
+           #msbuild /m /p:Configuration=Release;Platform="x86" ${{env.SOLUTION_FILE_PATH}}  #x86
+           
+    - name: upload__artifact2
+      uses: actions/upload-artifact@5d5d22a31266ced268874388b861e4b58bb5c2f3 # v4.3.1
+      with:
+       path: .\x64
+       
+    - name: test
+      run: .\x64\Release\Projectrqtest.exe
+       
+    # - name: Deploy
+      # uses: peaceiris/actions-gh-pages@v4
+      # with:
+        # github_token: ${{ secrets.GITHUB_TOKEN }}
+        # publish_dir: .
+        # keep_files: true
