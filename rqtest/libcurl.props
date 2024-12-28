@@ -7,13 +7,16 @@
     
     <ItemDefinitionGroup>
         <ClCompile>
-            <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);.\libcurl</AdditionalIncludeDirectories>
+            <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
             <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
         </ClCompile>
         <Link>
-            <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);.\libcurl</AdditionalLibraryDirectories>
+            <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);</AdditionalLibraryDirectories>
             <AdditionalDependencies>%(AdditionalDependencies);libcurl.lib;zlib.lib</AdditionalDependencies>
         </Link>
     </ItemDefinitionGroup>
-
+    <ItemGroup>
+        <Library Include="zlib.lib" />
+        <Library Include="libcurl.lib" />
+    </ItemGroup>
 </Project>

@@ -6,8 +6,8 @@
 //#pragma comment(lib, ".\\libcurl\\libcurl.lib")
 //#pragma comment(lib, ".\\libcurl\\zlib.lib")
 
-#pragma comment(lib, "libcurl.lib")
-#pragma comment(lib, "zlib.lib")
+//#pragma comment(lib, "libcurl.lib")
+//#pragma comment(lib, "zlib.lib")
 typedef struct {
     std::string body;
 	size_t bodySize;
