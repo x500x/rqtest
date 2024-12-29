@@ -36,7 +36,7 @@ jobs:
           cd vcpkg
           ./bootstrap-vcpkg.sh
           vcpkg integrate install
-          vcpkg install curl:x64-windows-static
+          vcpkg install curl[brotli,c-ares,http2,ldap,non-http,openssl,tool,websockets,zstd]:x64-windows-static
           #vcpkg install curl[brotli,c-ares,http2,ldap,non-http,openssl,tool,websockets,zstd]:x64-windows
           #vcpkg install curl[openssl]:x64-windows-static
           
