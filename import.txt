@@ -7,3 +7,20 @@ https://raw.github.com/x500x/building/refs/heads/x64-windows-static%408.11.0/cur
 <VcpkgTriplet Condition="'$(Platform)'=='x64'">x64-windows-static</VcpkgTriplet>
 
 <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+
+<ItemGroup>
+        <Library Include="zlib.lib" />
+        <Library Include="libcurl.lib" />
+</ItemGroup>
+    
+    
+- name: use-vcpkg
+  run: |
+      git clone https://github.com/Microsoft/vcpkg.git
+      cd vcpkg
+      ./bootstrap-vcpkg.sh
+      #vcpkg install openssl:x64-windows-static
+      vcpkg install curl[brotli,c-ares,http2,ldap,non-http,websockets,zstd]:x64-windows-static
+      vcpkg integrate install
+      #vcpkg install curl[brotli,c-ares,http2,ldap,non-http,openssl,tool,websockets,zstd]:x64-windows
+      #vcpkg install curl[openssl]:x64-windows-static

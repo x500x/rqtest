@@ -30,16 +30,7 @@ jobs:
       working-directory: ${{env.GITHUB_WORKSPACE}}
       run: nuget restore ${{env.SOLUTION_FILE_PATH}}
       
-    - name: use-vcpkg
-      run: |
-          git clone https://github.com/Microsoft/vcpkg.git
-          cd vcpkg
-          ./bootstrap-vcpkg.sh
-          #vcpkg install openssl:x64-windows-static
-          vcpkg install curl[brotli,c-ares,http2,ldap,non-http,websockets,zstd]:x64-windows-static
-          vcpkg integrate install
-          #vcpkg install curl[brotli,c-ares,http2,ldap,non-http,openssl,tool,websockets,zstd]:x64-windows
-          #vcpkg install curl[openssl]:x64-windows-static
+
     
     # - name: Deploy
       # uses: peaceiris/actions-gh-pages@v4
@@ -51,8 +42,8 @@ jobs:
     - name: build
       run: |
            #New-Item -Path ".\" -Name "libcurl" -ItemType "directory"
-           #Invoke-WebRequest -Uri "https://raw.github.com/x500x/building/refs/heads/x64-windows-static%408.11.0/zlib_x64-windows-static/lib/zlib.lib" -OutFile ".\rqtest\zlib.lib"
-           #Invoke-WebRequest -Uri "https://raw.github.com/x500x/building/refs/heads/x64-windows-static%408.11.0/curl_x64-windows-static/lib/libcurl.lib" -OutFile ".\rqtest\libcurl.lib"
+           Invoke-WebRequest -Uri "https://raw.github.com/x500x/building/refs/heads/x64-windows-static%408.11.0/zlib_x64-windows-static/lib/zlib.lib" -OutFile ".\rqtest\zlib.lib"
+           Invoke-WebRequest -Uri "https://raw.github.com/x500x/building/refs/heads/x64-windows-static%408.11.0/curl_x64-windows-static/lib/libcurl.lib" -OutFile ".\rqtest\libcurl.lib"
            msbuild /m /p:Configuration=Release ${{env.SOLUTION_FILE_PATH}}  #x64
            #msbuild /m /p:Configuration=Release;Platform="x86" ${{env.SOLUTION_FILE_PATH}}  #x86
            
@@ -62,11 +53,11 @@ jobs:
        path: .\x64
        
     - name: test
-      run: .\x64\Release\Projectrqtest.exe
+      run: .\x64\Release\ProjectProc.exe
        
-    - name: Deploy
-      uses: peaceiris/actions-gh-pages@v4
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: .\vcpkg\installed\x64-windows-static\lib\
-        keep_files: true
+    # - name: Deploy
+      # uses: peaceiris/actions-gh-pages@v4
+      # with:
+        # github_token: ${{ secrets.GITHUB_TOKEN }}
+        # publish_dir: .\vcpkg\installed\x64-windows-static\lib\
+        # keep_files: true

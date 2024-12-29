@@ -15,9 +15,5 @@
             <AdditionalDependencies>%(AdditionalDependencies);libcurl.lib;zlib.lib;Ws2_32.lib;Wldap32.lib;winmm.lib;Crypt32.lib;Normaliz.lib</AdditionalDependencies>
         </Link>
     </ItemDefinitionGroup>
-    <ItemGroup>
-        <Library Include="zlib.lib" />
-        <Library Include="libcurl.lib" />
-    </ItemGroup>
-    
+
 </Project>
