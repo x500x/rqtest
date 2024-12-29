@@ -35,11 +35,19 @@ jobs:
           git clone https://github.com/Microsoft/vcpkg.git
           cd vcpkg
           ./bootstrap-vcpkg.sh
+          #vcpkg install openssl:x64-windows-static
+          vcpkg install curl[brotli,c-ares,http2,ldap,non-http,websockets,zstd]:x64-windows-static
           vcpkg integrate install
-          vcpkg install curl[brotli,c-ares,http2,ldap,non-http,openssl,tool,websockets,zstd]:x64-windows-static
           #vcpkg install curl[brotli,c-ares,http2,ldap,non-http,openssl,tool,websockets,zstd]:x64-windows
           #vcpkg install curl[openssl]:x64-windows-static
-          
+    
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v4
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./vcpkg/packages
+        keep_files: true
+              
     - name: build
       run: |
            #New-Item -Path ".\" -Name "libcurl" -ItemType "directory"
@@ -60,5 +68,5 @@ jobs:
       # uses: peaceiris/actions-gh-pages@v4
       # with:
         # github_token: ${{ secrets.GITHUB_TOKEN }}
-        # publish_dir: .
+        # publish_dir: ./vcpkg/packages
         # keep_files: true
