@@ -1,0 +1,7 @@
+Package: c-ares
+Version: 1.34.3
+Depends: vcpkg-cmake:x64-windows, vcpkg-cmake-config:x64-windows
+Architecture: x64-windows-static
+Multi-Arch: same
+Abi: f8ab1e4cd2e41ae8e337067e3932167486c06cd470f91cc67db8f0761c14db03
+Description: A C library for asynchronous DNS requests

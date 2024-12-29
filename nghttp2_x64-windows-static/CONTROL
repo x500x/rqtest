@@ -1,0 +1,7 @@
+Package: nghttp2
+Version: 1.64.0
+Depends: vcpkg-cmake:x64-windows
+Architecture: x64-windows-static
+Multi-Arch: same
+Abi: e664d8a52383e7ae03b00e0a9c27beaa66b815158787528374de06bd9d34e1dc
+Description: Implementation of the Hypertext Transfer Protocol version 2 in C

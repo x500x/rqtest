@@ -1,0 +1,75 @@
+Package: curl
+Version: 8.11.1
+Depends: vcpkg-cmake:x64-windows, vcpkg-cmake-config:x64-windows, zlib
+Architecture: x64-windows-static
+Multi-Arch: same
+Abi: 358931051133503b255ec6e2329b89c89f1b6c3851b266a2279f49cc76dc5602
+Description: A library for transferring data with URLs
+Default-Features: non-http, ssl
+
+Package: curl
+Feature: brotli
+Depends: brotli
+Architecture: x64-windows-static
+Multi-Arch: same
+Description: brotli support (brotli)
+
+Package: curl
+Feature: c-ares
+Depends: c-ares
+Architecture: x64-windows-static
+Multi-Arch: same
+Description: c-ares support
+
+Package: curl
+Feature: http2
+Depends: curl, nghttp2
+Architecture: x64-windows-static
+Multi-Arch: same
+Description: HTTP2 support
+
+Package: curl
+Feature: ldap
+Depends: curl
+Architecture: x64-windows-static
+Multi-Arch: same
+Description: LDAP support
+
+Package: curl
+Feature: non-http
+Architecture: x64-windows-static
+Multi-Arch: same
+Description: Enables protocols beyond HTTP/HTTPS/HTTP2
+
+Package: curl
+Feature: schannel
+Depends: curl
+Architecture: x64-windows-static
+Multi-Arch: same
+Description: SSL support (Secure Channel)
+
+Package: curl
+Feature: ssl
+Depends: curl
+Architecture: x64-windows-static
+Multi-Arch: same
+Description: Default SSL backend
+
+Package: curl
+Feature: sspi
+Architecture: x64-windows-static
+Multi-Arch: same
+Description: SSPI support
+
+Package: curl
+Feature: websockets
+Architecture: x64-windows-static
+Multi-Arch: same
+Description: WebSocket support
+
+Package: curl
+Feature: zstd
+Depends: zstd
+Architecture: x64-windows-static
+Multi-Arch: same
+Description: ZStandard support (zstd)
