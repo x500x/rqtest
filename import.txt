@@ -5,3 +5,5 @@ https://raw.github.com/x500x/building/refs/heads/x64-windows-static%408.11.0/cur
 
 <VcpkgTriplet Condition="'$(Platform)'=='Win32'">x86-windows-static</VcpkgTriplet>
 <VcpkgTriplet Condition="'$(Platform)'=='x64'">x64-windows-static</VcpkgTriplet>
+
+<RuntimeLibrary>MultiThreaded</RuntimeLibrary>
