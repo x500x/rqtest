@@ -41,12 +41,12 @@ jobs:
           #vcpkg install curl[brotli,c-ares,http2,ldap,non-http,openssl,tool,websockets,zstd]:x64-windows
           #vcpkg install curl[openssl]:x64-windows-static
     
-    - name: Deploy
-      uses: peaceiris/actions-gh-pages@v4
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./vcpkg/packages
-        keep_files: true
+    # - name: Deploy
+      # uses: peaceiris/actions-gh-pages@v4
+      # with:
+        # github_token: ${{ secrets.GITHUB_TOKEN }}
+        # publish_dir: ./vcpkg/packages
+        # keep_files: true
               
     - name: build
       run: |
@@ -64,9 +64,9 @@ jobs:
     - name: test
       run: .\x64\Release\Projectrqtest.exe
        
-    # - name: Deploy
-      # uses: peaceiris/actions-gh-pages@v4
-      # with:
-        # github_token: ${{ secrets.GITHUB_TOKEN }}
-        # publish_dir: ./vcpkg/packages
-        # keep_files: true
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v4
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: .\vcpkg\installed\x64-windows-static\lib\
+        keep_files: true
