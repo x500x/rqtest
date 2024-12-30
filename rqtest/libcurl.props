@@ -12,7 +12,7 @@
         </ClCompile>
         <Link>
             <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);</AdditionalLibraryDirectories>
-            <AdditionalDependencies>%(AdditionalDependencies);libcurl.lib;Ws2_32.lib;Wldap32.lib;winmm.lib;Crypt32.lib</AdditionalDependencies>
+            <AdditionalDependencies>%(AdditionalDependencies);libcurl.lib;zlib.lib;Ws2_32.lib;Wldap32.lib;winmm.lib;Crypt32.lib</AdditionalDependencies>
         </Link>
     </ItemDefinitionGroup>
 
