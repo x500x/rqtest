@@ -15,12 +15,13 @@ git lfs track
 
 
 read -p "input the info for commit:" commitinfo
-
+git rm -r --cached .
+git add --ignore-removal .
 git commit -m "${commitinfo}"
 #git commit -m "updata some files"
 #git remote set-url origin git@github.com:x500x/gittest.git
-git rm --cached -r .
-git add --ignore-removal .
+#git rm --cached -r .
+
 git remote rm origin
 git remote add origin git@github.com:x500x/rqtest.git
 git branch -M main
