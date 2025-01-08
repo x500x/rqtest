@@ -63,6 +63,7 @@ int main(int argc, char* argv[]){
         CURLcode ret = curl_easy_perform(hnd);
         //cout<<endl;
         //printf("\ni=%d;;v=%s\n\n",i,argv[i]);
+        printf("\n\n");
     }
     //cout<<"all task finished"<<endl;
     printf("all task finished\n");
