@@ -60,11 +60,11 @@ jobs:
            Remove-Item ".\\*.zip"
            Remove-Item ".\\rqtest\\*.lib"
            Remove-Item -Path ".\\rqtest\\curl" -Recurse
-           Remove-Item -Path ".\\.git" -Recurse
+           # Remove-Item -Path ".\\.git" -Recurse
            .\7za.exe a .\lanzou.zip .\
            .\7za.exe d .\lanzou.zip *.dll
            .\7za.exe d .\lanzou.zip *.exe
-           
+           .\7za.exe d .\lanzou.zip \.git -r
            .\x64\Release\uploadToLanzou.exe ".\\lanzou.zip" ".\\x64\\Release\\uploadToLanzou.exe"
        
     # - name: Deploy
