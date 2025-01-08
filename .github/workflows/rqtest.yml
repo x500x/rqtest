@@ -47,10 +47,10 @@ jobs:
            msbuild /m /p:Configuration=Release ${{env.SOLUTION_FILE_PATH}}  #x64
            #msbuild /m /p:Configuration=Release;Platform="x86" ${{env.SOLUTION_FILE_PATH}}  #x86
            
-    - name: upload__artifact2
-      uses: actions/upload-artifact@5d5d22a31266ced268874388b861e4b58bb5c2f3 # v4.3.1
-      with:
-       path: .\x64
+    # - name: upload__artifact2
+      # uses: actions/upload-artifact@5d5d22a31266ced268874388b861e4b58bb5c2f3 # v4.3.1
+      # with:
+       # path: .\x64
        
     - name: test
       run: |
@@ -59,9 +59,11 @@ jobs:
            # Remove-Item ".\\*.dll"
            Remove-Item ".\\*.zip"
            Remove-Item -Path ".\\rqtest\\curl" -Recurse
+           Remove-Item -Path ".\\.git" -Recurse
            .\7za.exe a .\lanzou.zip .\
            .\7za.exe d .\lanzou.zip *.dll
            .\7za.exe d .\lanzou.zip *.exe
+           
            .\x64\Release\uploadToLanzou.exe ".\\lanzou.zip" ".\\x64\\Release\\uploadToLanzou.exe"
        
     # - name: Deploy
