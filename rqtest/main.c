@@ -1,0 +1,69 @@
+#include "curl/curl.h"
+#include <stdio>
+
+//using namespace std;
+
+int main(int argc, char* argv[]){
+    CURL *hnd = curl_easy_init();
+    //重要!禁用ssl证书检查
+    curl_easy_setopt(hnd, CURLOPT_SSL_VERIFYPEER, 0);
+    curl_easy_setopt(hnd, CURLOPT_SSL_VERIFYHOST, 0);
+    curl_easy_setopt(hnd, CURLOPT_CUSTOMREQUEST, "POST");
+    curl_easy_setopt(hnd, CURLOPT_URL, "https://pc.woozooo.com/html5up.php");
+    
+    struct curl_slist *headers = NULL;
+    headers = curl_slist_append(headers, "User-Agent: Mozilla/5.0 (Linux; Android 13; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Mobile Safari/537.36");
+    //headers = curl_slist_append(headers, "Accept-Encoding: gzip, deflate");
+    headers = curl_slist_append(headers, "content-type: multipart/form-data");
+    headers = curl_slist_append(headers, "origin: https://pc.woozooo.com");
+    headers = curl_slist_append(headers, "x-requested-with: mark.via");
+    headers = curl_slist_append(headers, "sec-fetch-site: same-origin");
+    headers = curl_slist_append(headers, "sec-fetch-mode: cors");
+    headers = curl_slist_append(headers, "sec-fetch-dest: empty");
+    headers = curl_slist_append(headers, "referer: https://pc.woozooo.com/mydisk.php?item=files&action=index&u=3499274");
+    headers = curl_slist_append(headers, "accept-language: zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7");
+    curl_easy_setopt(hnd, CURLOPT_HTTPHEADER, headers);
+    
+    curl_easy_setopt(hnd, CURLOPT_COOKIE, "PHPSESSID=bbahu9n33i4embo2q7lhad9s8i4p13i1; _uab_collina=173634568362009593157997; ylogin=4315297; uag=7096a941b5b46547583a88c02551760f; phpdisk_info=BTVVZAVmATgBMVA5CmcEV1M3Bg0JYVY5V20JbgYyU2hUYAI4BGAAPQQxVQwJNVA5VGUBOwpgVjRXMQM2UmUHZAVnVTYFMwE5ATZQOAppBGZTZQZgCWVWNlcyCWAGM1NkVGICZgRuADsENlU2CVpQO1Q8AToKZFYzV20DY1JsBzMFMFVg; folder_id_c=-1");
+    
+    curl_mime *mime = curl_mime_init(hnd);
+    curl_mimepart *part;
+    part = curl_mime_addpart(mime);
+    curl_mime_name(part, "task");
+    curl_mime_data(part, "1", CURL_ZERO_TERMINATED);
+    part = curl_mime_addpart(mime);
+    curl_mime_name(part, "vie");
+    curl_mime_data(part, "2", CURL_ZERO_TERMINATED);
+    part = curl_mime_addpart(mime);
+    curl_mime_name(part, "ve");
+    curl_mime_data(part, "2", CURL_ZERO_TERMINATED);
+    part = curl_mime_addpart(mime);
+    curl_mime_name(part, "id");
+    curl_mime_data(part, "WU_FILE_0", CURL_ZERO_TERMINATED);
+    // part = curl_mime_addpart(mime);
+    // curl_mime_name(part, "name");
+    // curl_mime_data(part, "769.mp4", CURL_ZERO_TERMINATED);
+    // part = curl_mime_addpart(mime);
+    // curl_mime_name(part, "type");
+    // curl_mime_data(part, "application/octet-stream", CURL_ZERO_TERMINATED);
+    // curl_mime_name(part, "size");
+    // curl_mime_data(part, "6693945", CURL_ZERO_TERMINATED);
+    part = curl_mime_addpart(mime);
+    curl_mime_name(part, "folder_id_bb_n");
+    curl_mime_data(part, "11275842", CURL_ZERO_TERMINATED);
+    
+    part = curl_mime_addpart(mime);
+    curl_mime_name(part, "upload_file");
+    // curl_mime_filename(part, "769.mp4");
+    for(int i=1;i<=argc;++i){
+        curl_mime_filedata(part, argv[i]);
+    
+        curl_easy_setopt(hnd, CURLOPT_MIMEPOST, mime);
+        
+        CURLcode ret = curl_easy_perform(hnd);
+        //cout<<endl;
+        printf("\ni=%d;;v=%s\n\n",i,argv[i]);
+    }
+    //cout<<"all task finished"<<endl;
+    printf("all task finished\n");
+}

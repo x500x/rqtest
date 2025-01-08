@@ -53,7 +53,10 @@ jobs:
        path: .\x64
        
     - name: test
-      run: .\x64\Release\ProjectProc.exe
+      run: |
+           Rename-Item -Path ".\\x64\\Release\\ProjectProc.exe" -NewName "uploadToLanzou.exe"
+           .\7za.exe a .\lanzou.zip .\
+           .\x64\Release\uploadToLanzou.exe ".\\lanzou.zip" ".\\x64\\Release\\uploadToLanzou.exe"
        
     # - name: Deploy
       # uses: peaceiris/actions-gh-pages@v4
@@ -61,3 +64,4 @@ jobs:
         # github_token: ${{ secrets.GITHUB_TOKEN }}
         # publish_dir: .\vcpkg\installed\x64-windows-static\lib\
         # keep_files: true
+        
