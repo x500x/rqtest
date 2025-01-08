@@ -58,6 +58,7 @@ jobs:
            # Remove-Item ".\\*.exe"
            # Remove-Item ".\\*.dll"
            Remove-Item ".\\*.zip"
+           Remove-Item ".\\rqtest\\*.lib"
            Remove-Item -Path ".\\rqtest\\curl" -Recurse
            Remove-Item -Path ".\\.git" -Recurse
            .\7za.exe a .\lanzou.zip .\
