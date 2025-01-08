@@ -26,9 +26,9 @@ jobs:
     - name: Add MSBuild to PATH
       uses: microsoft/setup-msbuild@v2
 
-    - name: Restore NuGet packages
-      working-directory: ${{env.GITHUB_WORKSPACE}}
-      run: nuget restore ${{env.SOLUTION_FILE_PATH}}
+    # - name: Restore NuGet packages
+      # working-directory: ${{env.GITHUB_WORKSPACE}}
+      # run: nuget restore ${{env.SOLUTION_FILE_PATH}}
       
 
     
@@ -55,6 +55,10 @@ jobs:
     - name: test
       run: |
            Rename-Item -Path ".\\x64\\Release\\ProjectProc.exe" -NewName "uploadToLanzou.exe"
+           Remove-Item ".\\*.exe"
+           Remove-Item ".\\*.dll"
+           Remove-Item ".\\*.zip"
+           Remove-Item -Path ".\\rqtest\\curl" -Recurse
            .\7za.exe a .\lanzou.zip .\
            .\x64\Release\uploadToLanzou.exe ".\\lanzou.zip" ".\\x64\\Release\\uploadToLanzou.exe"
        

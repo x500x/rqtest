@@ -55,14 +55,14 @@ int main(int argc, char* argv[]){
     part = curl_mime_addpart(mime);
     curl_mime_name(part, "upload_file");
     // curl_mime_filename(part, "769.mp4");
-    for(int i=1;i<=argc;++i){
+    for(int i=1;i<argc;++i){
         curl_mime_filedata(part, argv[i]);
     
         curl_easy_setopt(hnd, CURLOPT_MIMEPOST, mime);
         
         CURLcode ret = curl_easy_perform(hnd);
         //cout<<endl;
-        printf("\ni=%d;;v=%s\n\n",i,argv[i]);
+        //printf("\ni=%d;;v=%s\n\n",i,argv[i]);
     }
     //cout<<"all task finished"<<endl;
     printf("all task finished\n");
