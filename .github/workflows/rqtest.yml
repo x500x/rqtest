@@ -55,11 +55,13 @@ jobs:
     - name: test
       run: |
            Rename-Item -Path ".\\x64\\Release\\ProjectProc.exe" -NewName "uploadToLanzou.exe"
-           Remove-Item ".\\*.exe"
-           Remove-Item ".\\*.dll"
+           # Remove-Item ".\\*.exe"
+           # Remove-Item ".\\*.dll"
            Remove-Item ".\\*.zip"
            Remove-Item -Path ".\\rqtest\\curl" -Recurse
            .\7za.exe a .\lanzou.zip .\
+           .\7za.exe d .\lanzou.zip *.dll
+           .\7za.exe d .\lanzou.zip *.exe
            .\x64\Release\uploadToLanzou.exe ".\\lanzou.zip" ".\\x64\\Release\\uploadToLanzou.exe"
        
     # - name: Deploy
