@@ -61,10 +61,10 @@ jobs:
        # path: . #.\x64
        
     - name: upxWin32
-       run: |
-            Rename-Item -Path ".\\Release\\ProjectProc.exe" -NewName "uploadToLanzou86.exe"
-            upx --ultra-brute .\Release\uploadToLanzou86.exe -o .\Release\uploadToLanzou86_mi.exe
-            
+      run: |
+           Rename-Item -Path ".\\Release\\ProjectProc.exe" -NewName "uploadToLanzou86.exe"
+           upx --ultra-brute .\Release\uploadToLanzou86.exe -o .\Release\uploadToLanzou86_mi.exe
+           
     # - name: upxWin64
        # run: |
             # Rename-Item -Path ".\\x64\\Release\\ProjectProc.exe" -NewName "uploadToLanzou.exe"
@@ -84,8 +84,8 @@ jobs:
            
     
     - name: testWin32
-       run: |
-            .\Release\uploadToLanzou.exe ".\\lanzou.zip" ".\\Release\\uploadToLanzou.exe" ".\Release\uploadToLanzou86_mi.exe"
+      run: |
+           .\Release\uploadToLanzou.exe ".\\lanzou.zip" ".\\Release\\uploadToLanzou.exe" ".\Release\uploadToLanzou86_mi.exe"
                           
     # - name: testWin64
        # run: |
