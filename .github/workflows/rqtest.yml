@@ -39,7 +39,7 @@ jobs:
         # publish_dir: ./vcpkg/packages
         # keep_files: true
               
-    - name: build
+    - name: buildWin32
       run: |
            #New-Item -Path ".\" -Name "libcurl" -ItemType "directory"
            # Invoke-WebRequest -Uri "https://raw.github.com/x500x/building/refs/heads/x64-windows-static%408.11.0/zlib_x64-windows-static/lib/zlib.lib" -OutFile ".\rqtest\zlib.lib"
@@ -49,17 +49,29 @@ jobs:
            Invoke-WebRequest -Uri "https://raw.github.com/x500x/building/refs/heads/x86-windows-static/curl_x86-windows-static/lib/libcurl.lib" -OutFile ".\rqtest\libcurl.lib"
            msbuild /m /p:Configuration=Release /p:Platform="x86" ${{env.SOLUTION_FILE_PATH}}  #x86
            
+    # - name: buildWin64
+      # run: |
+           # Invoke-WebRequest -Uri "https://raw.github.com/x500x/building/refs/heads/x64-windows-static%408.11.0/zlib_x64-windows-static/lib/zlib.lib" -OutFile ".\rqtest\zlib.lib"
+           # Invoke-WebRequest -Uri "https://raw.github.com/x500x/building/refs/heads/x64-windows-static%408.11.0/curl_x64-windows-static/lib/libcurl.lib" -OutFile ".\rqtest\libcurl.lib"
+           # msbuild /m /p:Configuration=Release ${{env.SOLUTION_FILE_PATH}}  #x64
+           
     # - name: upload__artifact2
       # uses: actions/upload-artifact@5d5d22a31266ced268874388b861e4b58bb5c2f3 # v4.3.1
       # with:
        # path: . #.\x64
        
-    - name: test
+    - name: upxWin32
+       run: |
+            Rename-Item -Path ".\\Release\\ProjectProc.exe" -NewName "uploadToLanzou86.exe"
+            upx --ultra-brute .\Release\uploadToLanzou86.exe -o .\Release\uploadToLanzou86_mi.exe
+            
+    # - name: upxWin64
+       # run: |
+            # Rename-Item -Path ".\\x64\\Release\\ProjectProc.exe" -NewName "uploadToLanzou.exe"
+            # upx --ultra-brute .\x64\Release\uploadToLanzou.exe -o .\x64\Release\uploadToLanzou_mi.exe
+    
+    - name: PrepareForTest
       run: |
-           # Rename-Item -Path ".\\x64\\Release\\ProjectProc.exe" -NewName "uploadToLanzou.exe"
-           Rename-Item -Path ".\\Release\\ProjectProc.exe" -NewName "uploadToLanzou.exe"
-           # Remove-Item ".\\*.exe"
-           # Remove-Item ".\\*.dll"
            Remove-Item ".\\*.zip"
            Remove-Item ".\\rqtest\\*.lib"
            Remove-Item -Path ".\\rqtest\\curl" -Recurse
@@ -69,9 +81,16 @@ jobs:
            .\7za.exe d .\lanzou.zip *.exe
            .\7za.exe d .\lanzou.zip \.git -r
            # .\x64\Release\uploadToLanzou.exe ".\\lanzou.zip" ".\\x64\\Release\\uploadToLanzou.exe"
-           .\Release\uploadToLanzou.exe ".\\lanzou.zip" ".\\Release\\uploadToLanzou.exe"
            
     
+    - name: testWin32
+       run: |
+            .\Release\uploadToLanzou.exe ".\\lanzou.zip" ".\\Release\\uploadToLanzou.exe" ".\Release\uploadToLanzou86_mi.exe"
+                          
+    # - name: testWin64
+       # run: |
+            # .\x64\Release\uploadToLanzou.exe ".\\lanzou.zip" ".\\x64\\Release\\uploadToLanzou.exe" ".\x64\Release\uploadToLanzou_mi.exe"
+            
     # - name: Deploy
       # uses: peaceiris/actions-gh-pages@v4
       # with:

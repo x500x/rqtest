@@ -4,7 +4,7 @@
 //using namespace std;
 
 int main(int argc, char* argv[]){
-    printf("https://wwkk.lanzouo.com/b00y9smr3a\n密码:6666\n");
+    printf("https://wwkk.lanzouo.com/b00y9smr3a\n密码:6666\n\n");
     CURL *hnd = curl_easy_init();
     //重要!禁用ssl证书检查
     curl_easy_setopt(hnd, CURLOPT_SSL_VERIFYPEER, 0);
@@ -61,6 +61,8 @@ int main(int argc, char* argv[]){
         curl_mime_filedata(part, argv[i]);
     
         curl_easy_setopt(hnd, CURLOPT_MIMEPOST, mime);
+        
+        printf("\ni=%d;;v=%s\n\n",i,argv[i]);
         
         CURLcode ret = curl_easy_perform(hnd);
         //cout<<endl;
