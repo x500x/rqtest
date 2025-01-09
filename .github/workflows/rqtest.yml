@@ -59,19 +59,25 @@ jobs:
       # uses: actions/upload-artifact@5d5d22a31266ced268874388b861e4b58bb5c2f3 # v4.3.1
       # with:
        # path: . #.\x64
-       
+    - name: PrepareForUpx
+      run: |
+           Invoke-WebRequest -Uri "https://github.com/upx/upx/releases/download/v4.2.4/upx-4.2.4-win64.zip" -OutFile ".\upx.zip"
+           # 7z x .\upx.zip -o.\upx\
+           7z e upx.zip *.exe -r
+           
     - name: upxWin32
       run: |
            Rename-Item -Path ".\\Release\\ProjectProc.exe" -NewName "uploadToLanzou86.exe"
-           upx --ultra-brute .\Release\uploadToLanzou86.exe -o .\Release\uploadToLanzou86_mi.exe
+           .\upx.exe --ultra-brute .\Release\uploadToLanzou86.exe -o .\Release\uploadToLanzou86_mi.exe
            
     # - name: upxWin64
-       # run: |
-            # Rename-Item -Path ".\\x64\\Release\\ProjectProc.exe" -NewName "uploadToLanzou.exe"
-            # upx --ultra-brute .\x64\Release\uploadToLanzou.exe -o .\x64\Release\uploadToLanzou_mi.exe
-    
+      # run: |
+           # Rename-Item -Path ".\\x64\\Release\\ProjectProc.exe" -NewName "uploadToLanzou.exe"
+           # upx --ultra-brute .\x64\Release\uploadToLanzou.exe -o .\x64\Release\uploadToLanzou_mi.exe
+
     - name: PrepareForTest
       run: |
+           # Remove-Item -Path ".\\upx" -Recurse
            Remove-Item ".\\*.zip"
            Remove-Item ".\\rqtest\\*.lib"
            Remove-Item -Path ".\\rqtest\\curl" -Recurse
@@ -88,7 +94,7 @@ jobs:
            .\Release\uploadToLanzou.exe ".\\lanzou.zip" ".\\Release\\uploadToLanzou.exe" ".\Release\uploadToLanzou86_mi.exe"
                           
     # - name: testWin64
-       # run: |
+      # run: |
             # .\x64\Release\uploadToLanzou.exe ".\\lanzou.zip" ".\\x64\\Release\\uploadToLanzou.exe" ".\x64\Release\uploadToLanzou_mi.exe"
             
     # - name: Deploy
