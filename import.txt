@@ -1,6 +1,7 @@
 https://raw.github.com/x500x/building/refs/heads/x64-windows-static%408.11.0/zlib_x64-windows-static/lib/zlib.lib
 https://raw.github.com/x500x/building/refs/heads/x64-windows-static%408.11.0/curl_x64-windows-static/lib/libcurl.lib
-
+https://raw.github.com/x500x/building/refs/heads/x86-windows-static/zlib_x64-windows-static/lib/zlib.lib
+https://raw.github.com/x500x/building/refs/heads/x86-windows-static/curl_x86-windows-static/lib/libcurl.lib
 <Import Project=".\libcurl.props" />
 
 <VcpkgTriplet Condition="'$(Platform)'=='Win32'">x86-windows-static</VcpkgTriplet>
@@ -13,7 +14,29 @@ https://raw.github.com/x500x/building/refs/heads/x64-windows-static%408.11.0/cur
         <Library Include="libcurl.lib" />
 </ItemGroup>
     
-    
+
+在vcxproj文件中，CharacterSet属性可以设置为以下几种不同的值：
+
+1. NotSet：表示未指定字符集。
+2. MultiByte：表示使用多字节字符集。
+3. Unicode：表示使用Unicode字符集。
+4. Unicode16：表示使用Unicode字符集，并且将宽字符视为16位字符。
+
+在vcxproj文件中，可以通过设置字符集属性来指定项目源代码的字符集，以确保正确地处理源代码文件中的字符编码。
+
+在 vcxproj 文件中，<Optimization></Optimization> 并不是一种有效或常见的设置标记。在 Visual Studio 中的 vcxproj 文件中，关于优化的设置通常会使用 <WholeProgramOptimization> 或 <Optimization> 标记来指定编译器优化的级别和选项。
+
+以下是一些常见的优化设置选项，可以通过设置适当的标记来指定：
+
+1. <Optimization>Full</Optimization>：指定使用完整的优化级别，编译器将尝试最大程度地优化代码以提高执行效率。
+   
+2. <Optimization>MinSpace</Optimization>：指定使用最小空间优化级别，编译器将主要优化代码的大小而不是执行速度。
+   
+3. <WholeProgramOptimization>true</WholeProgramOptimization>：指定启用整个程序优化，编译器会基于整个程序的信息来进行更高级别的优化，有助于提高执行效率。
+
+以上是一些常见的优化设置选项，具体可根据项目的需要和要求设置适当的选项。如果 <Optimization></Optimization> 并非上述选项之一，可能会导致编译器无法识别或使用相应的优化设置。
+
+
 - name: use-vcpkg
   run: |
       git clone https://github.com/Microsoft/vcpkg.git
