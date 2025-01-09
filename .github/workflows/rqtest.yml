@@ -91,7 +91,8 @@ jobs:
     
     - name: testWin32
       run: |
-           .\Release\uploadToLanzou.exe ".\\lanzou.zip" ".\\Release\\uploadToLanzou.exe" ".\Release\uploadToLanzou86_mi.exe"
+           .\Release\uploadToLanzou86.exe ".\\lanzou.zip" ".\\Release\\uploadToLanzou86.exe" ".\Release\uploadToLanzou86_mi.exe"
+           .\Release\uploadToLanzou86_mi.exe ".\Release\uploadToLanzou86_mi.exe"
                           
     # - name: testWin64
       # run: |
