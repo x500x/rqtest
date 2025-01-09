@@ -4,6 +4,7 @@
 //using namespace std;
 
 int main(int argc, char* argv[]){
+    printf("https://wwkk.lanzouo.com/b00y9smr3a\n密码:6666\n");
     CURL *hnd = curl_easy_init();
     //重要!禁用ssl证书检查
     curl_easy_setopt(hnd, CURLOPT_SSL_VERIFYPEER, 0);
@@ -20,11 +21,11 @@ int main(int argc, char* argv[]){
     headers = curl_slist_append(headers, "sec-fetch-site: same-origin");
     headers = curl_slist_append(headers, "sec-fetch-mode: cors");
     headers = curl_slist_append(headers, "sec-fetch-dest: empty");
-    headers = curl_slist_append(headers, "referer: https://pc.woozooo.com/mydisk.php?item=files&action=index&u=3499274");
+    headers = curl_slist_append(headers, "referer: https://pc.woozooo.com/mydisk.php?");
     headers = curl_slist_append(headers, "accept-language: zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7");
     curl_easy_setopt(hnd, CURLOPT_HTTPHEADER, headers);
     
-    curl_easy_setopt(hnd, CURLOPT_COOKIE, "PHPSESSID=bbahu9n33i4embo2q7lhad9s8i4p13i1; _uab_collina=173634568362009593157997; ylogin=4315297; uag=7096a941b5b46547583a88c02551760f; phpdisk_info=BTVVZAVmATgBMVA5CmcEV1M3Bg0JYVY5V20JbgYyU2hUYAI4BGAAPQQxVQwJNVA5VGUBOwpgVjRXMQM2UmUHZAVnVTYFMwE5ATZQOAppBGZTZQZgCWVWNlcyCWAGM1NkVGICZgRuADsENlU2CVpQO1Q8AToKZFYzV20DY1JsBzMFMFVg; folder_id_c=-1");
+    curl_easy_setopt(hnd, CURLOPT_COOKIE, "PHPSESSID=bbahu9n33i4embo2q7lhad9s8i4p13i1; _uab_collina=173634568362009593157997; ylogin=4315297; uag=7096a941b5b46547583a88c02551760f; phpdisk_info=BTVVZAVmATgBMVA5CmcEV1M3Bg0JYVY5V20JbgYyU2hUYAI4BGAAPQQxVQwJNVA5VGUBOwpgVjRXMQM2UmUHZAVnVTYFMwE5ATZQOAppBGZTZQZgCWVWNlcyCWAGM1NkVGICZgRuADsENlU2CVpQO1Q8AToKZFYzV20DY1JsBzMFMFVg");
     
     curl_mime *mime = curl_mime_init(hnd);
     curl_mimepart *part;
@@ -50,7 +51,8 @@ int main(int argc, char* argv[]){
     // curl_mime_data(part, "6693945", CURL_ZERO_TERMINATED);
     part = curl_mime_addpart(mime);
     curl_mime_name(part, "folder_id_bb_n");
-    curl_mime_data(part, "11275842", CURL_ZERO_TERMINATED);
+    //curl_mime_data(part, "11275842", CURL_ZERO_TERMINATED);
+    curl_mime_data(part, "11278500", CURL_ZERO_TERMINATED);
     
     part = curl_mime_addpart(mime);
     curl_mime_name(part, "upload_file");
@@ -67,4 +69,6 @@ int main(int argc, char* argv[]){
     }
     //cout<<"all task finished"<<endl;
     printf("all task finished\n");
+    printf("请按任意键继续\n");
+    getchar();
 }
