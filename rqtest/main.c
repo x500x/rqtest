@@ -195,7 +195,7 @@ int main(int argc, char* argv[]){
     
         curl_easy_setopt(hnd, CURLOPT_MIMEPOST, mime);
         
-        printf("\ni=%d;;v=%s\n\n",i,argv[i]);
+        printf("\ni=%d  v=%s\n\n",i,argv[i]);
         
         CURLcode ret = curl_easy_perform(hnd);
         if(1==response) ++success_count;
@@ -207,7 +207,7 @@ int main(int argc, char* argv[]){
     }
     //cout<<"all task finished"<<endl;
     printf("all task finished\n");
-    printf("total=%d,\tsuccess=%d,\t\n",argc-1,success_count);
+    printf("total=%d,\tsuccess=%d\n",argc-1,success_count);
     if(success_count!=argc-1){
         printf("以下为失败的文件\n");
         while(!IsStackEmpty()) {
