@@ -4,7 +4,7 @@
 
 //using namespace std;
 
-typedef void *HANDLE;
+typedef int HANDLE;
 
 struct STACKINFO {
     struct STACKINFO *next;
