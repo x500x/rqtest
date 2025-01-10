@@ -118,7 +118,7 @@ int main(int argc, char** argv) {
 }
 */
 size_t responseBodyCallback(void *ptr, size_t size, size_t nmemb, void *stream) {
-    int* pResponse = (stResponse*)stream;
+    int* pResponse = (int*)stream;
 	//{"zt":1
 	if(0==*pResponse)
 	    if('1'==*(ptr+6)) *pResponse=1;

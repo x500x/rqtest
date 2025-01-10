@@ -73,7 +73,7 @@ jobs:
     # - name: upxWin64
       # run: |
            # Rename-Item -Path ".\\x64\\Release\\ProjectProc.exe" -NewName "uploadToLanzou.exe"
-           # upx --ultra-brute .\x64\Release\uploadToLanzou.exe -o .\x64\Release\uploadToLanzou_mi.exe
+           # .\upx.exe --ultra-brute .\x64\Release\uploadToLanzou.exe -o .\x64\Release\uploadToLanzou_mi.exe
 
     - name: PrepareForTest
       run: |
