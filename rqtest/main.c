@@ -4,7 +4,7 @@
 
 //using namespace std;
 
-typedef int HANDLE;
+typedef void* HANDLE;
 
 struct STACKINFO {
     struct STACKINFO *next;
@@ -91,7 +91,7 @@ void InitStack() {
 空->1 非空->0
 */
 inline int IsStackEmpty() {
-    if(!nowinfo)return 1;
+    if(NULL==nowinfo)return 1;
     return 0;
 }
 /*
@@ -131,6 +131,8 @@ int main(int argc, char* argv[]){
     nowinfo=NULL;
 
     InitStack();
+    
+    
     
     printf("https://wwkk.lanzouo.com/b00y9smr3a\n密码:6666\n\n");
     CURL *hnd = curl_easy_init();
@@ -208,11 +210,14 @@ int main(int argc, char* argv[]){
     //cout<<"all task finished"<<endl;
     printf("all task finished\n");
     printf("total=%d,\tsuccess=%d\n",argc-1,success_count);
-    if(success_count!=argc-1){
-        printf("以下为失败的文件\n");
-        while(!IsStackEmpty()) {
+    if(success_count<argc-1){
+        printf("以下为失败的文件:\n");
+        
+        while(0==IsStackEmpty()) {
+            
             printf("%s\n",argv[((int)PopStack())]);
         }
+        
     }
     
     printf("请按任意键继续\n");
