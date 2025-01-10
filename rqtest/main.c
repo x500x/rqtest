@@ -122,7 +122,7 @@ size_t responseBodyCallback(void *ptr, size_t size, size_t nmemb, void *stream) 
 	//{"zt":1
 	if(0==*pResponse)
 	    if('1'==*(((char *)ptr+6))) *pResponse=1;
-	
+	    else *pResponse=-1;
 	return size * nmemb;
 }
 
@@ -203,12 +203,13 @@ int main(int argc, char* argv[]){
         if(1==response) ++success_count;
         if(-1==response) {
             PushStack((HANDLE)i);
-            printf("failedFile::%s\n",argv[i]);
+            printf("failedFile::%s\n\n",argv[i]);
+            // printf("\n");
         }
         response=0;
         //cout<<endl;
         //printf("\ni=%d;;v=%s\n\n",i,argv[i]);
-        printf("\n\n");
+        printf("\n");
     }
     //cout<<"all task finished"<<endl;
     printf("all task finished\n");
