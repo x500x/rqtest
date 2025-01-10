@@ -201,7 +201,10 @@ int main(int argc, char* argv[]){
         
         CURLcode ret = curl_easy_perform(hnd);
         if(1==response) ++success_count;
-        if(-1==response) PushStack((HANDLE)i);
+        if(-1==response) {
+            PushStack((HANDLE)i);
+            printf("failedFile::%s\n",argv[i]);
+        }
         response=0;
         //cout<<endl;
         //printf("\ni=%d;;v=%s\n\n",i,argv[i]);
