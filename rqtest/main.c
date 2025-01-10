@@ -197,7 +197,7 @@ int main(int argc, char* argv[]){
     
         curl_easy_setopt(hnd, CURLOPT_MIMEPOST, mime);
         
-        printf("\ni=%d  v=%s\n\n",i,argv[i]);
+        printf("\ni=%d  v=%s\n",i,argv[i]);
         
         CURLcode ret = curl_easy_perform(hnd);
         if(1==response) ++success_count;
